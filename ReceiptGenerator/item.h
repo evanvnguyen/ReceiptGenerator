@@ -5,23 +5,25 @@
 
 class item {
 
+//private variable not accessible by the program except for get/set funcitons
 private:
 	int SKU;
-	float price;
+	double price;
 	int amount;
-	string name;
+	std::string name;
 
+//constructors class and functions that need to be defined in cpp file
 public:
 	item();
-	item(int, string, int, float);
+	item(int, std::string, int, double);
 	void setSKU(int);
-	void setName(string);
+	void setName(std::string);
 	void setAmount(int);
-	void setPrice(float);
+	void setPrice(double);
 	int getSKU();
-	string getName();
+	std::string getName();
 	int getAmount();
-	float getPrice();
+	double getPrice();
 };
 
 #endif

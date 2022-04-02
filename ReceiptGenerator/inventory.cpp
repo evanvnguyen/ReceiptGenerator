@@ -5,6 +5,6 @@
 
 using namespace std;
 
-item tempItem = new item(1234, "Temp", 2, 2.12);
+item tempItem = item(1234, "Temp", 2, 2.12);
 
-map<item, int> stock = { {1, 20} };
+//map<item, int> stock = { {tempItem, 20} };
