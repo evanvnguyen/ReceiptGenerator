@@ -6,13 +6,19 @@
 
 class card {
 	private:
-		int cardNum;
+		long int cardNum;
 		std::string cardType; // set to none initially, evaluate in card.cpp. dont pass as parameter
 		int expDate;
 		int CVV;
 
-		void setCardNum(int givenCardNum);
-		void setCardType(int givenCardNum);
+	public:
+		card();
+		~card();
+		card(long int givenCardNum, int givenExpDate, int givenCVV);
+
+
+		void setCardNum(long int givenCardNum);
+		std::string setCardType(long int givenCardNum);
 		void setExpDate(int givenExpDate);
 		void setCVV(int givenCVV);
 
@@ -20,12 +26,7 @@ class card {
 		std::string getCardType() const;
 		int getExpDate() const;
 		int getCVV() const;
-	public:
-		card();
-		~card();
-		card(int givenCardNum, int givenExpDate, int givenCVV);
 
-		bool isValid() const;
 };
 
 #endif
