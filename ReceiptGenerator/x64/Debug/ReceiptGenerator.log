@@ -1,4 +1,2 @@
-﻿  card.cpp
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\CECS-275-LABS\ReceiptGenerator-master\ReceiptGenerator\card.cpp(31,55): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\CECS-275-LABS\ReceiptGenerator-master\ReceiptGenerator\card.cpp(36,15): warning C4244: 'initializing': conversion from 'double' to 'long', possible loss of data
-  ReceiptGenerator.vcxproj -> C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\CECS-275-LABS\ReceiptGenerator-master\x64\Debug\ReceiptGenerator.exe
+﻿  ReceiptGenerator.cpp
+  ReceiptGenerator.vcxproj -> C:\OneDrive\CLASS\CECS 275\CECS-275-LABS\ReceiptGenerator-master\x64\Debug\ReceiptGenerator.exe

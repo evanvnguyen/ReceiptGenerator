@@ -4,13 +4,13 @@
 #include <string>
 
 card::card() {
-	cardNum = 0;
+	cardNum = "NULL";
 	expDate = 0;
 	cardType = "NULL";
 	CVV = 0;
 }
 
-card::card(long int givenCardNum, int givenExpDate, int givenCVV) {
+card::card(std::string givenCardNum, int givenExpDate, int givenCVV) {
 	cardNum = givenCardNum;
 	expDate = givenExpDate;
 	cardType = setCardType(givenCardNum); // to be altered by setCardType();
@@ -21,47 +21,68 @@ card::~card() {
 
 }
 
-void card::setCardNum(long int givenCardNum) {
+void card::setCardNum(std::string givenCardNum) {
 	cardNum = givenCardNum;
 }
 
-std::string card::setCardType(long int givenCardNum) {
+std::string card::setCardType(std::string givenCardNum) {
+	if (!checkCardNums()) {
+		return "Invalid";
+	}
 
 	// get length
-	int numLength = std::to_string(givenCardNum).length();
+	short int numLength = givenCardNum.length();
 
 	// get first digit
-	long int temp = givenCardNum;
-	long int num = floor(log10(temp)) + 1;
-	int first = temp / (int)pow(10, num - 1);
+	char firstChar = givenCardNum[0];
+	short int first = firstChar - '0';
 
 	// console debug
-	std::cout << givenCardNum << std::endl;
-	std::cout << "first digit: " << first << std::endl;
-	std::cout << "length: " << numLength << std::endl;
+	//std::cout << "first digit: " << first << std::endl;
+	//std::cout << "length: " << numLength << std::endl;
 
 
-	// visa (if card length 13-19 and first digit = 4
-	if ((numLength == 13) && (first == 4)) {
-		cardType = "Visa";
+	// visa 
+	if ((numLength == 16) && (first == 4)) {
+		cardType = "VISA";
 	}
-	// amex 
+	// mastercard 
 	else if ((numLength == 16) && (first == 5)) {
-		cardType = "Mastercard";
+		cardType = "MASTERCARD";
 	}
-	// mastercard
+	// amex
 	else if ((numLength == 15) && (first == 3)) {
-		cardType = "American Express";
+		cardType = "AMEX";
 	}
 	// discover
 	else if ((numLength == 16) && (first == 6)) {
-		cardType = "Discover";
+		cardType = "DISCOVER";
 	}
 	else {
-		cardType = "INVALID"; // raise an exception
+		cardType = "Invalid Card";
 	}
 
 	return cardType;
+}
+
+bool card::checkCardNums() {
+
+	// return false if length is < 15 or > 17
+	if (cardNum.length() < 15 || cardNum.length() > 16) {
+		std::cout << cardNum << " is not a valid number." << std::endl;
+		return false;
+	}
+
+	// check if first
+	for (int i = 0; i < cardNum.length(); i++) {
+		if (!isdigit(cardNum[i])) {
+			return false;
+		}
+	}
+
+	std::cout << cardNum << " is a valid number." << std::endl;
+	return true;
+
 }
 
 void card::setExpDate(int givenExpDate) {
@@ -74,7 +95,7 @@ void card::setCVV(int givenCVV) {
 
 }
 
-int card::getCardNum() const {
+std::string card::getCardNum() const {
 	return cardNum;
 }
 
