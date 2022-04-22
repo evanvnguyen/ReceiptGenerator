@@ -145,11 +145,9 @@
     <ClCompile Include="item.cpp" />
     <ClCompile Include="market.cpp" />
     <ClCompile Include="receipt.cpp" />
-    <ClCompile Include="ReceiptGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card.h" />
-    <ClInclude Include="cashRegister.h" />
     <ClInclude Include="inventory.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="market.h" />

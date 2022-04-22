@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ReceiptGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cashRegister.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,9 +35,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cashRegister.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="card.h">
       <Filter>Header Files</Filter>
     </ClInclude>
