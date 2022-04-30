@@ -15,10 +15,10 @@ item::item() {
 }
 
 //overloaded constructor for an item where everything is given
-item::item(int givenSKU, string givenName, int givenAmount, double givenPrice) {
+item::item(int givenSKU, string givenName, int invAmount, float givenPrice) {
 	SKU = givenSKU;
 	name = givenName;
-	amount = givenAmount;
+	amount = invAmount;
 	price = givenPrice;
 }
 
@@ -61,7 +61,7 @@ int item::getAmount() const {
 }
 
 //returns the price of the item
-double item::getPrice() const {
+float item::getPrice() const {
 	return price;
 }
 

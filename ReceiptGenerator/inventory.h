@@ -7,10 +7,29 @@
 #include "item.h"
 class inventory {
 	private:
-		// initialize the inventory here
-		//item milk(0001, "Horizon Milk 16oz", 50, 3.99);
+
+		// initialize inventory items here
+		item milk;
+		item candy;
+		item bread;
+		item apple;
+		item eggs;
+		item orange;
+
 	public:
-		
+
+		// inventory is composed of these item objects
+		inventory() : milk(), candy(), bread(), apple(), eggs(), orange() {};
+
+		// get member -> get an items member 
+		int getSKU() const;
+		std::string getName() const;
+		int getAmount() const;
+		float getPrice() const;
+
+		// set members -> set the amount after specifying a purchase
+		void setAmount(int numPurchased);
+
 };
 
 #endif

@@ -15,17 +15,17 @@ class item {
 	//constructors class and functions that need to be defined in cpp file
 	public:
 		item();
-		item(int givenSKU, std::string givenName, int givenAmount, double givenPrice);
+		item(int givenSKU, std::string givenName, int invAmount, float givenPrice);
 
 		void setSKU(int givenSKU);
 		void setName(std::string givenName);
-		void setAmount(int givenAmount);
+		void setAmount(int invAmount);
 		void setPrice(double givenPrice);
 
 		int getSKU() const;
 		std::string getName() const;
 		int getAmount() const;
-		double getPrice() const;
+		float getPrice() const;
 
 		void toString() const;
 };
