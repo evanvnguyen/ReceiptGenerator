@@ -111,3 +111,7 @@ int card::getCVV() const {
 	return CVV;
 }
 
+void card::toString() const {
+	std::cout << cardType << " ending in " << cardNum.substr(cardNum.length() - 4);
+}
+

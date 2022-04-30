@@ -29,6 +29,7 @@ class card {
 		int getExpDate() const;
 		int getCVV() const;
 
+		void toString() const; // asterisked card number
 };
 
 #endif

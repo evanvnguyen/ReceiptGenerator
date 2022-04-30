@@ -64,3 +64,7 @@ int item::getAmount() const {
 double item::getPrice() const {
 	return price;
 }
+
+void item::toString() const {
+	std::cout << name << " " << SKU << endl;
+}

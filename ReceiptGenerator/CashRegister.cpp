@@ -13,26 +13,32 @@ bool checkScan(string);
 int main()
 {
     vector<string> itemsPassed;
-
+    
     string user_input;
     bool still_buying = true;
 
-    while (still_buying) {
+    /*while (still_buying) {
         cout << "Please scan your item (Press F to finish): ";
         cin >> user_input;
         scanItem(user_input);
     }
-    
+    */
 
-    /* Test Cards Here
+    /*Test Cards Here
     string amex = "324123412341234";
     card amexCard(amex, 1023, 843);
     cout << amexCard.getCardType() << endl;
-
+    amexCard.toString();
+    cout << endl;
+    */
+    
     string visa = "4000555566667894";
     card visaCard(visa, 1023, 843);
     cout << visaCard.getCardType() << endl;
+    visaCard.toString();
+    cout << endl;
 
+    /*
     string mastercard = "5412545451124422";
     card masterCard(mastercard, 1023, 843);
     cout << masterCard.getCardType() << endl;
@@ -40,11 +46,12 @@ int main()
     string discover = "6000555566667894";
     card discoverCard(discover, 1023, 843);
     cout << discoverCard.getCardType() << endl;
+    */
 
     string invalidCard = "40005432678943244";
     card invalidCC(invalidCard, 1023, 843);
     cout << invalidCC.getCardType() << endl;
-    */
+    
 
     return 0;
 }

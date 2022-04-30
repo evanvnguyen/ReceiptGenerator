@@ -8,8 +8,9 @@
 class inventory {
 	private:
 		// initialize the inventory here
-		item milk(0001, "Horizon Milk 16oz", 50, 3.99);
+		//item milk(0001, "Horizon Milk 16oz", 50, 3.99);
 	public:
+		
 };
 
 #endif

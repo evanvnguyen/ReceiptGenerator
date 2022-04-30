@@ -26,6 +26,8 @@ class item {
 		std::string getName() const;
 		int getAmount() const;
 		double getPrice() const;
+
+		void toString() const;
 };
 
 #endif

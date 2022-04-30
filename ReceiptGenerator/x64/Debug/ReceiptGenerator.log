@@ -1,3 +1,3 @@
 ﻿  cashRegister.cpp
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\CECS-275-LABS\ReceiptGenerator-master\ReceiptGenerator\cashRegister.cpp(66): warning C4715: 'scanItem': not all control paths return a value
-  ReceiptGenerator.vcxproj -> C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\CECS-275-LABS\ReceiptGenerator-master\x64\Debug\ReceiptGenerator.exe
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(73): warning C4715: 'scanItem': not all control paths return a value
+  ReceiptGenerator.vcxproj -> C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\x64\Debug\ReceiptGenerator.exe
