@@ -1,12 +1,18 @@
 #pragma once
 #ifndef INVENTORY_H
 #define INVENTORY_H
-//class to hold all the items of a store, one instance will be created in the ReceiptGenerator.cpp file to be
-//the inventory of a particular runtime
 
 #include "item.h"
+
+#include <string>
+
+//class to hold all the items of a store, one instance will be created in the ReceiptGenerator.cpp file to be
+//the inventory of a particular runtime
 class inventory {
 	private:
+
+		// users scanned input
+		std::string scan;
 
 		// initialize inventory items here
 		item milk;
@@ -21,8 +27,10 @@ class inventory {
 		// inventory is composed of these item objects
 		inventory() : milk(), candy(), bread(), apple(), eggs(), orange() {};
 
-		// get member -> get an items member 
-		int getSKU() const;
+		// confirm SKU for validity and check its inventory
+		bool confirmSKU(int scan) const;
+
+		// get member -> get an items member variable
 		std::string getName() const;
 		int getAmount() const;
 		float getPrice() const;

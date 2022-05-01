@@ -36,3 +36,21 @@ inventory::inventory() : milk(), candy(), bread(), apple(), eggs(), orange() {
 	orange.setPrice(2.99);
 
 }
+
+// if SKU matches, confirm it's validity
+// by checking its inventory amount
+bool inventory::confirmSKU(int scan) const {
+
+}
+
+std::string inventory::getName() const {
+
+}
+
+int inventory::getAmount() const {
+
+}
+
+float inventory::getPrice() const {
+
+}
