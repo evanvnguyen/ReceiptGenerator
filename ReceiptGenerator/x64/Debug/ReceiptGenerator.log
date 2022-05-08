@@ -1,3 +1,32 @@
 ﻿  cashRegister.cpp
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(73): warning C4715: 'scanItem': not all control paths return a value
-  ReceiptGenerator.vcxproj -> C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\x64\Debug\ReceiptGenerator.exe
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(25,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(26,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(27,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(28,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(29,60): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xstddef(117,22): error C2676: binary '<': 'const _Ty' does not define this operator or a conversion to a type acceptable to the predefined operator
+          with
+          [
+              _Ty=item
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xstddef(116): message : while compiling class template member function 'bool std::less<item>::operator ()(const _Ty &,const _Ty &) const'
+          with
+          [
+              _Ty=item
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xutility(1414): message : see reference to function template instantiation 'bool std::less<item>::operator ()(const _Ty &,const _Ty &) const' being compiled
+          with
+          [
+              _Ty=item
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(1356): message : see reference to class template instantiation 'std::less<item>' being compiled
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(1356): message : see reference to variable template 'const bool is_empty_v<std::less<item> >' being compiled
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\map(73): message : see reference to class template instantiation 'std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>' being compiled
+          with
+          [
+              _Kty=item,
+              _Ty=int,
+              _Pr=std::less<item>,
+              _Alloc=std::allocator<std::pair<const item,int>>
+          ]
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(38): message : see reference to class template instantiation 'std::map<item,int,std::less<item>,std::allocator<std::pair<const item,int>>>' being compiled
