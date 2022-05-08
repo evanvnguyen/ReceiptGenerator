@@ -3,6 +3,7 @@
 #include "market.h"
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 #include <map>
 using namespace std;
 
@@ -10,6 +11,8 @@ using namespace std;
 // main called here
 
 void display(market);
+void displayPayment();
+void testCards();
 
 int main()
 {
@@ -43,47 +46,37 @@ int main()
             break;
         }
         else if (std::find(allSKU.begin(), allSKU.end(), user_input) != allSKU.end()) {
-            // if input is in the vector of skus, add to users cart
-
-            // fix this: initialize the map with its qty in the cart.
-            // if multiple, add to the qty.
-
-            // --> cart.push_back(items.at(user_input));
-
+            
+            // if item is already in the cart, dont add it. 
+            // find the item's qty and +1
+            // implement operator< 
+            map<item, int>::iterator it = cart.find(items.at(user_input));
+            if (cart.end() != it) {
+                cart[items.at(user_input)]++;
+            }
+            else { 
+                // if input is new, add item name and set qty to 1
+                cart.insert(pair<item, int>(items.at(user_input), 1));
+            }
             cout << "  " << items.at(user_input).getName() << " scanned!\n";
         }
         else {
             cout << "\n  This item doesnt exist!";
-        } // throw exception if input not an integer?
+        } // throw exception if input not an integer
 
     }
     cout << "  ---------------------------------------------------------------------\n";
+    displayPayment();
 
     cout << "  Items in cart: \n";
-    for (int i = 0; i < cart.size(); i++) {
-        cout << "  " << cart[i].getName() << endl;
-    }
 
-    cout << "  Select your payment type: \n";
-    cout << "                         1: CARD\n";
-    cout << "                         2: CASH";
     cin >> user_input;
-
 
     // scan the item here and append it to cart
     // once all sku's are in the cart, update each sku's inventory
     // and access the price.
     
-    string visa = "4000555566667894";
-    card visaCard(visa, 1023, 843);
-    cout << "TYPE: " << visaCard.getCardType() << endl;
-    visaCard.toString();
-    cout << endl << endl;
 
-    string invalidCard = "40005432678943244";
-    card invalidCC(invalidCard, 1023, 843);
-    cout << invalidCC.getCardType() << endl;
-    
     return 0;
 }
 
@@ -101,4 +94,24 @@ void display(market store) {
     cout << "     You make your way to self-checkout, and start using the register.\n";
     cout << "    The register detects your movement and the following prompts pop up:\n";
     cout << "  ---------------------------------------------------------------------\n";
+}
+
+void displayPayment() {
+    cout << "  Select your payment type: \n";
+    cout << "                         1: CARD\n";
+    cout << "                         2: CASH";
+}
+
+void testCards() {
+    /*
+    string visa = "4000555566667894";
+    card visaCard(visa, 1023, 843);
+    cout << "TYPE: " << visaCard.getCardType() << endl;
+    visaCard.toString();
+    cout << endl << endl;
+
+    string invalidCard = "40005432678943244";
+    card invalidCC(invalidCard, 1023, 843);
+    cout << invalidCC.getCardType() << endl;
+    */
 }
