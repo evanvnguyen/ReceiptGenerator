@@ -141,14 +141,12 @@
   <ItemGroup>
     <ClCompile Include="card.cpp" />
     <ClCompile Include="cashRegister.cpp" />
-    <ClCompile Include="inventory.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="market.cpp" />
     <ClCompile Include="receipt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card.h" />
-    <ClInclude Include="inventory.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="market.h" />
     <ClInclude Include="receipt.h" />

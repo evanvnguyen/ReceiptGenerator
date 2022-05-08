@@ -1,3 +1,7 @@
 ﻿  cashRegister.cpp
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(73): warning C4715: 'scanItem': not all control paths return a value
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(23,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(24,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(25,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(26,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(27,60): warning C4305: 'argument': truncation from 'double' to 'float'
   ReceiptGenerator.vcxproj -> C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\x64\Debug\ReceiptGenerator.exe
