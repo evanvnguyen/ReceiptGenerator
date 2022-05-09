@@ -69,7 +69,6 @@ int main()
             cout << "  TOTAL: " << sum << endl;
             cout << "  ---------------------------------------------------------------------\n";
 
-
         }
         else {
             cout << "\n  This item doesnt exist!\n";
@@ -128,9 +127,11 @@ void payment(double sum, market Store) {
     for (int i = 0; user_input[i]; i++) {
         user_input[i] = tolower(user_input[i]);
     }
+
+    // ask for payment options
     bool still_select = true;
     while (still_select) {
-        if (user_input == "card") {
+        if (user_input == "card") { // selects card
             cout << "  Please insert or swipe your card: ";
             cin >> user_input;
             string thisCard = user_input;
@@ -163,7 +164,7 @@ void payment(double sum, market Store) {
                 cout << "  This card is not valid.\n";
             }
         }
-        else if (user_input == "cash") {
+        else if (user_input == "cash") { // selects cash
             cout << "This machine only accepts proper denominations:\n";
             cout << "COINS: 0.01, 0.05, 0.1, 0.25, 0.5\n";
             cout << "CASH: 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0 \n";
@@ -175,6 +176,7 @@ void payment(double sum, market Store) {
     // call receipt
 }
 
+// loading functions to make it look nicer
 void waitReceipt() {
     int numberOfDots;
     double timeInterval, timeInterval2;
