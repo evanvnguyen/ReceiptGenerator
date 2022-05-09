@@ -127,6 +127,9 @@ void payment(double sum, market Store) {
     for (int i = 0; user_input[i]; i++) {
         user_input[i] = tolower(user_input[i]);
     }
+    // apply sales tax
+    float taxAmt = sum * Store.getTax();
+    sum = sum + taxAmt;
 
     // ask for payment options
     bool still_select = true;
@@ -144,14 +147,10 @@ void payment(double sum, market Store) {
                 cout << "\n  - APPROVED: ";
                 myCard.toString();
 
-                // apply sales tax
-                float taxAmt = sum * Store.getTax();
-
                 // This doesn't really do what I want. It only outputs
-                // 2 decimal places versus actually truncating the variable. Fix this
-                cout << "\n  - PRE-TAX TOTAL: " << sum << endl;
+                // 2 decimal places versus actually truncating the variable. Fix 
+                printf("  - PRE-TAX TOTAL: %.2f\n", sum);
                 printf("  - TAX AMT: %.2f", taxAmt);
-                sum = sum + taxAmt;
                 printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum);
 
                 waitReceipt();
@@ -165,12 +164,37 @@ void payment(double sum, market Store) {
             }
         }
         else if (user_input == "cash") { // selects cash
-            cout << "This machine only accepts proper denominations:\n";
-            cout << "COINS: 0.01, 0.05, 0.1, 0.25, 0.5\n";
-            cout << "CASH: 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0 \n";
-            cout << "Please enter cash: ";
-            cin >> user_input;
+            double cash = 0;
+            double add;
+            double leftover;
+            cout << "  This machine only accepts proper denominations:\n";
+            cout << "  COINS: 0.01, 0.05, 0.1, 0.25, 0.5\n";
+            cout << "  CASH: 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0 \n";
 
+            // This doesn't really do what I want. It only outputs
+            // 2 decimal places versus actually truncating the variable. Fix 
+            printf("  - PRE-TAX TOTAL: %.2f\n", sum);
+            printf("  - TAX AMT: %.2f", taxAmt);
+            printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum);
+            cout << "  ---------------------------------------------------------------------\n";
+
+            bool balanceLeft = true;
+            while (balanceLeft) {
+                cout << "  > Please enter cash: ";
+                cin >> add;
+                cash = cash + add;
+                leftover = sum - cash;
+                if (leftover > 0) {
+                    printf("  - Remaining: %.2f\n", leftover);
+                }
+                else {
+                    printf("  - Your change is: %.2f\n", leftover * -1);
+                    waitReceipt();
+
+                    break;
+                }
+            }
+            still_select = false;
         }
     }
     // call receipt
@@ -182,6 +206,7 @@ void waitReceipt() {
     double timeInterval, timeInterval2;
 
     cout << "  ---------------------------------------------------------------------";
+    cout << "\n  > Thank you for shopping at Costco!";
     cout << "\n  > Generating receipt ";
     for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
     {
