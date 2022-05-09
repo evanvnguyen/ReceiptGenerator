@@ -6,20 +6,23 @@
 #include <unordered_map>
 #include <map>
 #include <string>
-#include <ctype.h>
+#include <ctime>
+#include <cmath>
+
 using namespace std;
 
 // UI for transaction
 // main called here
 
 void display(market);
-void payment(double);
-void testCards();
+void waitReceipt(); 
+void waitPayment();
+void payment(double, market);
 
 int main()
 {
     market Store("Costco", "5401 Katella Ave\n\tCypress, CA 90720", 7801,
-                    "(562)-668-5150", "123 1234 123", "us@costco.com");
+                    "(562)-668-5150", "123 1234 123", "us@costco.com", 0.2);
 
     // instantiate items here
     vector<int> allSKU = { 7141, 7142, 7143, 7144, 7145 };
@@ -46,16 +49,26 @@ int main()
     while (still_buying) {
         cout << "  Please scan the SKU of the item (Press 0 to finish): ";
         cin >> user_input;
+
         if (user_input == 0) {
             break;
         }
         else if (std::find(allSKU.begin(), allSKU.end(), user_input) != allSKU.end()) {
+
             // get the sum of the item
             sum += items.at(user_input).getPrice();
             cart.push_back(items.at(user_input));
+
+            // update the items amount in the inventory
+            items.at(user_input).setAmount(items.at(user_input).getAmount() - 1);
+            cout << "  " << items.at(user_input).getName() << " stock: " << items.at(user_input).getAmount() << endl;
+
+
             cout << "  " << items.at(user_input).getName() << " scanned!";
             cout << " ------------------------ " << items.at(user_input).getPrice() << endl;
             cout << "  TOTAL: " << sum << endl;
+            cout << "  ---------------------------------------------------------------------\n";
+
 
         }
         else {
@@ -65,11 +78,14 @@ int main()
     }
     cout << "  ---------------------------------------------------------------------\n";
     cout << "  Items in cart: \n";
+
     for (int i = 0; i < cart.size(); i++) {
         cout <<"  " << cart[i].getSKU() << " " << cart[i].getName() << " " << cart[i].getPrice() << endl;
     }
+
+    cout << "  TOTAL: " << sum << endl;
     cout << "  ---------------------------------------------------------------------\n";
-    payment(sum);
+    payment(sum, Store);
 
     // scan the item here and append it to cart
     // once all sku's are in the cart, update each sku's inventory
@@ -94,18 +110,20 @@ void display(market store) {
     cout << "  ---------------------------------------------------------------------\n";
 }
 
-void payment(double sum) {
+void payment(double sum, market Store) {
 
     double tempSum = sum;
     // cash denominations
     vector<double> cash = { 0.01, 0.05, 0.1, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0 };
     
     cout << "  Select your payment type: \n";
-    cout << "                         1: CARD\n";
-    cout << "                         2: CASH\n";
+    cout << "  > CARD\n";
+    cout << "  > CASH\n";
+    cout << "  > ";
 
     string user_input;
     cin >> user_input;
+    cout << "  ---------------------------------------------------------------------\n";
 
     for (int i = 0; user_input[i]; i++) {
         user_input[i] = tolower(user_input[i]);
@@ -113,19 +131,36 @@ void payment(double sum) {
     bool still_select = true;
     while (still_select) {
         if (user_input == "card") {
-            cout << "Please insert or swipe your card: ";
+            cout << "  Please insert or swipe your card: ";
             cin >> user_input;
             string thisCard = user_input;
             card myCard(thisCard, 1023, 843);
 
             // card approved
             if (myCard.checkCardNums()) {
-                cout << "TYPE: " << myCard.getCardType() << endl;
+                waitPayment();
+
+                cout << "\n  - APPROVED: ";
                 myCard.toString();
+
+                // apply sales tax
+                float taxAmt = sum * Store.getTax();
+
+                // This doesn't really do what I want. It only outputs
+                // 2 decimal places versus actually truncating the variable. Fix this
+                cout << "\n  - PRE-TAX TOTAL: " << sum << endl;
+                printf("  - TAX AMT: %.2f", taxAmt);
+                sum = sum + taxAmt;
+                printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum);
+
+                waitReceipt();
+                // call receipt here
+                // and done!
+
                 break;
             }
             else {
-                cout << "This card is not valid.\n";
+                cout << "  This card is not valid.\n";
             }
         }
         else if (user_input == "cash") {
@@ -140,16 +175,35 @@ void payment(double sum) {
     // call receipt
 }
 
-void testCards() {
-    /*
-    string visa = "4000555566667894";
-    card visaCard(visa, 1023, 843);
-    cout << "TYPE: " << visaCard.getCardType() << endl;
-    visaCard.toString();
-    cout << endl << endl;
+void waitReceipt() {
+    int numberOfDots;
+    double timeInterval, timeInterval2;
 
-    string invalidCard = "40005432678943244";
-    card invalidCC(invalidCard, 1023, 843);
-    cout << invalidCC.getCardType() << endl;
-    */
+    cout << "  ---------------------------------------------------------------------";
+    cout << "\n  > Generating receipt ";
+    for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
+    {
+        cout << ".";
+        for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
+    }
+}
+
+void waitPayment() {
+    int numberOfDots;
+    double timeInterval, timeInterval2;
+
+    cout << "  ---------------------------------------------------------------------";
+    cout << "\n  > Contacting bank ";
+    for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
+    {
+        cout << ".";
+        for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
+    }
+    cout << "\n  > Starting transaction ";
+    for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
+    {
+        cout << ".";
+        for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
+    }
+    cout << "\n  ---------------------------------------------------------------------";
 }

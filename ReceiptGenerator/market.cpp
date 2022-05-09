@@ -11,13 +11,14 @@ market::market() {
 	fax = "NULL";
 	email = "NULL";
 }
-market::market(std::string givenName, std::string givenAddress, int givenStoreNum, std::string givenPhone, std::string givenFax, std::string givenEmail) {
+market::market(std::string givenName, std::string givenAddress, int givenStoreNum, std::string givenPhone, std::string givenFax, std::string givenEmail, float givenTax) {
 	name = givenName;
 	address = givenAddress;
 	storeNum = givenStoreNum;
 	phone = givenPhone;
 	fax = givenFax;
 	email = givenEmail;
+	tax = givenTax;
 
 }
 
@@ -41,6 +42,10 @@ void market::setEmail(std::string givenEmail) {
 	email = givenEmail;
 }
 
+void market::setTax(double givenTax) {
+	tax = givenTax;
+}
+
 // Get functions
 std::string market::getName() const {
 	return name;
@@ -59,4 +64,7 @@ std::string market::getFax() const {
 }
 std::string market::getEmail() const {
 	return email;
+}
+float market::getTax() const {
+	return tax;
 }
