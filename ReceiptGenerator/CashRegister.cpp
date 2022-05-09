@@ -5,13 +5,15 @@
 #include <vector>
 #include <unordered_map>
 #include <map>
+#include <string>
+#include <ctype.h>
 using namespace std;
 
 // UI for transaction
 // main called here
 
 void display(market);
-void displayPayment();
+void payment(double);
 void testCards();
 
 int main()
@@ -35,7 +37,9 @@ int main()
                              { allSKU[4], ps5 } };
     display(Store);
 
-    map<item, int> cart;
+    vector<item> cart;
+    double sum = 0;
+
 
     int user_input; 
     bool still_buying = true;
@@ -46,36 +50,30 @@ int main()
             break;
         }
         else if (std::find(allSKU.begin(), allSKU.end(), user_input) != allSKU.end()) {
-            
-            // if item is already in the cart, dont add it. 
-            // find the item's qty and +1
-            // implement operator< 
-            map<item, int>::iterator it = cart.find(items.at(user_input));
-            if (cart.end() != it) {
-                cart[items.at(user_input)]++;
-            }
-            else { 
-                // if input is new, add item name and set qty to 1
-                cart.insert(pair<item, int>(items.at(user_input), 1));
-            }
-            cout << "  " << items.at(user_input).getName() << " scanned!\n";
+            // get the sum of the item
+            sum += items.at(user_input).getPrice();
+            cart.push_back(items.at(user_input));
+            cout << "  " << items.at(user_input).getName() << " scanned!";
+            cout << " ------------------------ " << items.at(user_input).getPrice() << endl;
+            cout << "  TOTAL: " << sum << endl;
+
         }
         else {
-            cout << "\n  This item doesnt exist!";
+            cout << "\n  This item doesnt exist!\n";
         } // throw exception if input not an integer
 
     }
     cout << "  ---------------------------------------------------------------------\n";
-    displayPayment();
-
     cout << "  Items in cart: \n";
-
-    cin >> user_input;
+    for (int i = 0; i < cart.size(); i++) {
+        cout <<"  " << cart[i].getSKU() << " " << cart[i].getName() << " " << cart[i].getPrice() << endl;
+    }
+    cout << "  ---------------------------------------------------------------------\n";
+    payment(sum);
 
     // scan the item here and append it to cart
     // once all sku's are in the cart, update each sku's inventory
     // and access the price.
-    
 
     return 0;
 }
@@ -96,10 +94,50 @@ void display(market store) {
     cout << "  ---------------------------------------------------------------------\n";
 }
 
-void displayPayment() {
+void payment(double sum) {
+
+    double tempSum = sum;
+    // cash denominations
+    vector<double> cash = { 0.01, 0.05, 0.1, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0 };
+    
     cout << "  Select your payment type: \n";
     cout << "                         1: CARD\n";
-    cout << "                         2: CASH";
+    cout << "                         2: CASH\n";
+
+    string user_input;
+    cin >> user_input;
+
+    for (int i = 0; user_input[i]; i++) {
+        user_input[i] = tolower(user_input[i]);
+    }
+    bool still_select = true;
+    while (still_select) {
+        if (user_input == "card") {
+            cout << "Please insert or swipe your card: ";
+            cin >> user_input;
+            string thisCard = user_input;
+            card myCard(thisCard, 1023, 843);
+
+            // card approved
+            if (myCard.checkCardNums()) {
+                cout << "TYPE: " << myCard.getCardType() << endl;
+                myCard.toString();
+                break;
+            }
+            else {
+                cout << "This card is not valid.\n";
+            }
+        }
+        else if (user_input == "cash") {
+            cout << "This machine only accepts proper denominations:\n";
+            cout << "COINS: 0.01, 0.05, 0.1, 0.25, 0.5\n";
+            cout << "CASH: 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0 \n";
+            cout << "Please enter cash: ";
+            cin >> user_input;
+
+        }
+    }
+    // call receipt
 }
 
 void testCards() {

@@ -8,9 +8,9 @@ class item {
 	//private variable not accessible by the program except for get/set funcitons
 	private:
 		int SKU;
-		double price;
-		int amount;
 		std::string name;
+		int amount;
+		double price;
 
 	//constructors class and functions that need to be defined in cpp file
 	public:

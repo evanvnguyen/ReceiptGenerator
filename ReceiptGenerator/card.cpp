@@ -69,7 +69,7 @@ bool card::checkCardNums() {
 
 	// return false if length is < 15 or > 17
 	if (cardNum.length() < 15 || cardNum.length() > 16) {
-		std::cout << cardNum << " is not a valid number." << std::endl;
+		//std::cout << cardNum << " is not a valid number." << std::endl;
 		return false;
 	}
 
@@ -80,7 +80,7 @@ bool card::checkCardNums() {
 		}
 	}
 
-	std::cout << cardNum << " is a valid number." << std::endl;
+	//std::cout << cardNum << " is a valid number." << std::endl;
 	return true;
 
 }
