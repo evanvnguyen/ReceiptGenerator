@@ -101,9 +101,6 @@ int main()
 
             }
 
-            // update the items amount in the inventory
-
-
             std::cout << "  TOTAL: " << sum << std::endl;
             std::cout << "  ---------------------------------------------------------------------\n";
         }
@@ -270,7 +267,6 @@ bool cashPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, 
             return false;
 
         }
-
     }
 }
 
