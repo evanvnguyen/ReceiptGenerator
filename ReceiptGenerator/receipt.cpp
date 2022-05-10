@@ -23,6 +23,8 @@ receipt::receipt(market givenStore, std::vector<item> givenCart, tax givenTax, d
 }
 
 void receipt::printReceiptCard() const {
+	std::string wat;
+
 	// print out store names
 	std::cout << std::endl;
 	std::cout << "              " << Store.getName() << " #" << Store.getNumber() << std::endl;
@@ -48,9 +50,13 @@ void receipt::printReceiptCard() const {
 	printf(" $%.2f", Tax.taxAmount());
 	printf("\n                         TOTAL: $%.2f", Tax.calcTotal());
 	printBarcode();
+	std::cin >> wat;
+
 }
 
 void receipt::printReceiptCash() const {
+	std::string wat;
+
 	// print out store names
 	std::cout << std::endl;
 	std::cout << "              " << Store.getName() << " #" << Store.getNumber() << std::endl;
@@ -74,6 +80,8 @@ void receipt::printReceiptCash() const {
 	printf("\n                         CHANGE: %.2f", abs(Tax.calcTotal() - cash));
 	printf("\n                         TOTAL: $%.2f", Tax.calcTotal());
 	printBarcode();
+	std::cin >> wat;
+
 }
 
 void receipt::printBarcode() const {

@@ -62,6 +62,10 @@ std::string card::setCardType(std::string givenCardNum) {
 
 bool card::checkCardNums() {
 
+	if (cardType == "Invalid Card") {
+		return false;
+	}
+
 	// return false if length is < 15 or > 17
 	if (cardNum.length() < 15 || cardNum.length() > 16) {
 		return false;

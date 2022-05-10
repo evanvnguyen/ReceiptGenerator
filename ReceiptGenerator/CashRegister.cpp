@@ -34,7 +34,7 @@ int main()
     // instantiate items here
     std::vector<int> allSKU = { 7141, 7142, 7143, 7144, 7145 };
 
-    item milk(allSKU[0], "Horizon Milk", 50, 4.99);
+    item milk(allSKU[0], "Horizon Milk", 2, 4.99);
     item phone(allSKU[1], "iPhone 13", 50, 799.99);
     item apples(allSKU[2], "Fuji Apples (6ct)", 50, 3.99);
     item webcam(allSKU[3], "Webcam 1080p", 50, 49.99);
@@ -55,7 +55,8 @@ int main()
     while (still_buying) {
         std::cout << "  Please scan the SKU of the item (Press 0 to finish): ";
         std::cin >> user_input;
-        
+        user_input = abs(user_input);
+
         // error handle a bad input
         while (std::cin.fail()) {
             std::cin.clear();
@@ -81,14 +82,27 @@ int main()
         else if (std::find(allSKU.begin(), allSKU.end(), user_input) != allSKU.end()) {
 
             // get the sum of the item
-            sum += items.at(user_input).getPrice();
-            cart.push_back(items.at(user_input));
+            if (items.at(user_input).getAmount() == 0) {
+                std::cout << "  This item is out of stock.\n";
+                std::cout << "  ---------------------------------------------------------------------\n";
+                std::cout << "  Items in cart: \n";
+                for (int i = 0; i < cart.size(); i++) {
+                    std::cout << "  " << cart[i].getSKU() << " " << cart[i].getName() << " " << cart[i].getPrice() << std::endl;
+                }
+            }
+            else {
+                sum += items.at(user_input).getPrice();
+                cart.push_back(items.at(user_input));
+                items.at(user_input).setAmount(items.at(user_input).getAmount() - 1);
+                std::cout << "  " << items.at(user_input).getName() << " stock: " << items.at(user_input).getAmount() << std::endl;
+                std::cout << "  " << items.at(user_input).getName() << " scanned!";
+                std::cout << " ------------------------ " << items.at(user_input).getPrice() << std::endl;
+
+            }
 
             // update the items amount in the inventory
-            items.at(user_input).setAmount(items.at(user_input).getAmount() - 1);
-            std::cout << "  " << items.at(user_input).getName() << " stock: " << items.at(user_input).getAmount() << std::endl;
-            std::cout << "  " << items.at(user_input).getName() << " scanned!";
-            std::cout << " ------------------------ " << items.at(user_input).getPrice() << std::endl;
+
+
             std::cout << "  TOTAL: " << sum << std::endl;
             std::cout << "  ---------------------------------------------------------------------\n";
         }
@@ -134,6 +148,7 @@ void display(market store) {
 void payment(double sum, market Store, std::vector<item> cart) {
 
     double tempSum = sum;
+    std::string wat;
     
     std::cout << "  Select your payment type: \n";
     std::cout << "  > CASH\n";
@@ -169,6 +184,7 @@ void payment(double sum, market Store, std::vector<item> cart) {
 
             // cardPayment returns false to break the loop.
             still_select = cardPayment(Store, initTax, cart, sum, taxAmt);
+
         }
         else if (user_input == "cash") { // selects cash
 
@@ -231,6 +247,12 @@ bool cashPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, 
     while (balanceLeft) {
         std::cout << "  > Please enter cash: ";
         std::cin >> add;
+        while (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "  Please deposit a cash value:  ";
+            std::cin >> add;
+        }
         cash = cash + add;
         leftover = thisSum - cash;
         if (leftover > 0) {
