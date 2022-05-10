@@ -12,6 +12,7 @@
 #include <ctime>
 #include <cmath>
 #include <limits>
+#include <iomanip>
 // UI for transaction
 // main called here
 
@@ -29,7 +30,7 @@ bool cashPayment(market, tax, std::vector<item> cart, double, double);
 int main()
 {
     market Store("Costco", "5401 Katella Ave\n\t   Cypress, CA 90720", 7801,
-                    "(562)-668-5150", "123 1234 123", "us@costco.com", 0.2);
+                    "(562)-668-5150", "123 1234 123", "us@costco.com", 0.07);
 
     // instantiate items here
     std::vector<int> allSKU = { 7141, 7142, 7143, 7144, 7145 };
@@ -95,8 +96,8 @@ int main()
                 cart.push_back(items.at(user_input));
                 items.at(user_input).setAmount(items.at(user_input).getAmount() - 1);
                 std::cout << "  " << items.at(user_input).getName() << " stock: " << items.at(user_input).getAmount() << std::endl;
-                std::cout << "  " << items.at(user_input).getName() << " scanned!";
-                std::cout << " ------------------------ " << items.at(user_input).getPrice() << std::endl;
+                std::cout << "  " << std::left << std::setw(24) << items.at(user_input).getName() 
+                          << std::right << items.at(user_input).getPrice() << std::endl;
 
             }
 
@@ -114,7 +115,7 @@ int main()
     std::cout << "  Items in cart: \n";
 
     for (int i = 0; i < cart.size(); i++) {
-        std::cout <<"  " << cart[i].getSKU() << " " << cart[i].getName() << " " << cart[i].getPrice() << std::endl;
+        std::cout << "  "  << cart[i].getSKU() << " " << std::setw(24) << std::left << cart[i].getName() << cart[i].getPrice() << std::endl;
     }
 
     std::cout << "  TOTAL: " << sum << std::endl;
@@ -173,7 +174,7 @@ void payment(double sum, market Store, std::vector<item> cart) {
     }
     // apply sales tax
     float taxAmt = sum * Store.getTax();
-    tax initTax(0.2, sum);
+    tax initTax(Store.getTax(), sum);
 
     // ask for payment options
     bool still_select = true;
