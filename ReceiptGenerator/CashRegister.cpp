@@ -19,6 +19,7 @@ using namespace std;
 void display(market);
 void waitReceipt(); 
 void waitPayment();
+void waitChange();
 void payment(double, market, vector<item>);
 
 int main()
@@ -131,10 +132,13 @@ void payment(double sum, market Store, vector<item> cart) {
     }
     // apply sales tax
     float taxAmt = sum * Store.getTax();
+    tax initTax(0.2, sum);
 
     // ask for payment options
     bool still_select = true;
     while (still_select) {
+        double cash = 0.0;
+
         if (user_input == "card") { // selects card
             cout << "  Please insert or swipe your card: ";
             cin >> user_input;
@@ -157,8 +161,7 @@ void payment(double sum, market Store, vector<item> cart) {
                 waitReceipt();
                 // call receipt here
                 // and done!
-                tax initTax(0.2, sum);
-                receipt Receipt(Store, cart, myCard, initTax, sum);
+                receipt Receipt(Store, cart, myCard, initTax, sum, cash);
                 Receipt.printReceiptCard();
 
                 break;
@@ -178,7 +181,8 @@ void payment(double sum, market Store, vector<item> cart) {
             // This doesn't really do what I want. It only outputs
             // 2 decimal places versus actually truncating the variable. Fix 
             printf("  - PRE-TAX TOTAL: %.2f\n", sum);
-            printf("  - TAX AMT: %.2f", sum + taxAmt);
+            printf("  - TAX AMT: %.2f", taxAmt);
+            sum = sum + taxAmt;
             printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum);
             cout << "  ---------------------------------------------------------------------\n";
 
@@ -196,7 +200,9 @@ void payment(double sum, market Store, vector<item> cart) {
                     waitReceipt();
 
                     // call receipt here and done!
-                    
+                    receipt Receipt(Store, cart, initTax, sum, cash);
+                    Receipt.printReceiptCash();
+                    waitChange();
                     break;
                 }
             }
@@ -219,6 +225,7 @@ void waitReceipt() {
         cout << ".";
         for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
     }
+    cout << endl;
 }
 
 void waitPayment() {
@@ -239,4 +246,18 @@ void waitPayment() {
         for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
     }
     cout << "\n  ---------------------------------------------------------------------";
+}
+
+void waitChange() {
+    int numberOfDots;
+    double timeInterval, timeInterval2;
+
+    cout << "\n  ---------------------------------------------------------------------";
+    cout << "\n  > Dispensing change ";
+    for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
+    {
+        cout << ".";
+        for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
+    }
+    cout << "\n  > Please collect your change. Thank you for shopping with us!";
 }

@@ -16,9 +16,11 @@ class receipt
 		card myCard;
 		tax Tax;
 		double sum;
+		double cash;
 	public:
 
-		receipt(market, std::vector<item>, card, tax, double);
+		receipt(market, std::vector<item>, card, tax, double, double);
+		receipt(market, std::vector<item>, tax, double, double); // cash constructor
 
 		void printReceiptCard() const;
 		void printReceiptCash() const;
