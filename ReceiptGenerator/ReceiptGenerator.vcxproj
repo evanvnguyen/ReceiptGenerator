@@ -144,12 +144,14 @@
     <ClCompile Include="item.cpp" />
     <ClCompile Include="market.cpp" />
     <ClCompile Include="receipt.cpp" />
+    <ClCompile Include="tax.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="market.h" />
     <ClInclude Include="receipt.h" />
+    <ClInclude Include="tax.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -30,6 +30,9 @@
     <ClCompile Include="market.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tax.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="market.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tax.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

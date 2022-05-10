@@ -1,6 +1,8 @@
 #include "item.h"
 #include "card.h"
 #include "market.h"
+#include "receipt.h"
+#include "tax.h"
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -17,11 +19,11 @@ using namespace std;
 void display(market);
 void waitReceipt(); 
 void waitPayment();
-void payment(double, market);
+void payment(double, market, vector<item>);
 
 int main()
 {
-    market Store("Costco", "5401 Katella Ave\n\tCypress, CA 90720", 7801,
+    market Store("Costco", "5401 Katella Ave\n\t Cypress, CA 90720", 7801,
                     "(562)-668-5150", "123 1234 123", "us@costco.com", 0.2);
 
     // instantiate items here
@@ -84,7 +86,7 @@ int main()
 
     cout << "  TOTAL: " << sum << endl;
     cout << "  ---------------------------------------------------------------------\n";
-    payment(sum, Store);
+    payment(sum, Store, cart);
 
     // scan the item here and append it to cart
     // once all sku's are in the cart, update each sku's inventory
@@ -109,7 +111,7 @@ void display(market store) {
     cout << "  ---------------------------------------------------------------------\n";
 }
 
-void payment(double sum, market Store) {
+void payment(double sum, market Store, vector<item> cart) {
 
     double tempSum = sum;
     // cash denominations
@@ -129,7 +131,6 @@ void payment(double sum, market Store) {
     }
     // apply sales tax
     float taxAmt = sum * Store.getTax();
-    sum = sum + taxAmt;
 
     // ask for payment options
     bool still_select = true;
@@ -149,13 +150,16 @@ void payment(double sum, market Store) {
 
                 // This doesn't really do what I want. It only outputs
                 // 2 decimal places versus actually truncating the variable. Fix 
-                printf("  - PRE-TAX TOTAL: %.2f\n", sum);
+                printf("\n  - PRE-TAX TOTAL: %.2f\n", sum);
                 printf("  - TAX AMT: %.2f", taxAmt);
-                printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum);
+                printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum + taxAmt);
 
                 waitReceipt();
                 // call receipt here
                 // and done!
+                tax initTax(0.2, sum);
+                receipt Receipt(Store, cart, myCard, initTax, sum);
+                Receipt.printReceiptCard();
 
                 break;
             }
@@ -174,7 +178,7 @@ void payment(double sum, market Store) {
             // This doesn't really do what I want. It only outputs
             // 2 decimal places versus actually truncating the variable. Fix 
             printf("  - PRE-TAX TOTAL: %.2f\n", sum);
-            printf("  - TAX AMT: %.2f", taxAmt);
+            printf("  - TAX AMT: %.2f", sum + taxAmt);
             printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum);
             cout << "  ---------------------------------------------------------------------\n";
 
@@ -191,6 +195,8 @@ void payment(double sum, market Store) {
                     printf("  - Your change is: %.2f\n", leftover * -1);
                     waitReceipt();
 
+                    // call receipt here and done!
+                    
                     break;
                 }
             }
