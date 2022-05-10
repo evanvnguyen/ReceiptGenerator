@@ -4,24 +4,24 @@
 
 class tax {
 	private:
-		double localTax;
+		float localTax;
 
 		// pre-tax total
-		double sum;
+		float sum;
 	public:
 		tax();
-		tax(double, double);
+		tax(float, float);
 
-		void setTax(double givenLocalTax);
-		void setSum(double givenSum);
+		void setTax(float givenLocalTax);
+		void setSum(float givenSum);
 
-		double getTax() const;
-		double getSum() const;
+		float getTax() const;
+		float getSum() const;
 
-		double taxAmount() const;
+		float taxAmount() const;
 
 		// after tax total
-		double calcTotal() const;
+		float calcTotal() const;
 };
 
 #endif

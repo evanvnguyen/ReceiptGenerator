@@ -21,11 +21,11 @@ void waitReceipt();
 void waitPayment();
 void waitChange();
 
-void payment(double, market, std::vector<item>);
+void payment(float, market, std::vector<item>);
 //(myCard, userInput, sum, taxAmt)
-bool cardPayment(market, tax, std::vector<item> cart, double, double);
+bool cardPayment(market, tax, std::vector<item> cart, float, float);
 //(cash, tax, cart, sum, taxamt)
-bool cashPayment(market, tax, std::vector<item> cart, double, double);
+bool cashPayment(market, tax, std::vector<item> cart, float, float);
 
 int main()
 {
@@ -49,7 +49,7 @@ int main()
     display(Store);
 
     std::vector<item> cart;
-    double sum = 0;
+    float sum = 0;
 
     int user_input; 
     bool still_buying = true;
@@ -143,9 +143,9 @@ void display(market store) {
     std::cout << "  ---------------------------------------------------------------------\n";
 }
 
-void payment(double sum, market Store, std::vector<item> cart) {
+void payment(float sum, market Store, std::vector<item> cart) {
 
-    double tempSum = sum;
+    float tempSum = sum;
     std::string wat;
     
     std::cout << "  Select your payment type: \n";
@@ -170,13 +170,13 @@ void payment(double sum, market Store, std::vector<item> cart) {
         user_input[i] = tolower(user_input[i]);
     }
     // apply sales tax
-    double taxAmt = sum * Store.getTax();
+    float taxAmt = sum * Store.getTax();
     tax initTax(Store.getTax(), sum);
 
     // ask for payment options
     bool still_select = true;
     while (still_select) {
-        double cash = 0.0;
+        float cash = 0.0;
 
         if (user_input == "card") { // selects card
 
@@ -196,14 +196,14 @@ void payment(double sum, market Store, std::vector<item> cart) {
     }
 }
 
-bool cardPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, double thisSum, double thisTaxAmt) {
+bool cardPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, float thisSum, float thisTaxAmt) {
     std::string user_input;
     
     std::cout << "  Please insert or swipe your card: ";
     std::cin >> user_input;
     card myCard(user_input, 1023, 843);
 
-    double cash = 0.0;
+    float cash = 0.0;
     
     if (myCard.checkCardNums()) {
         waitPayment();
@@ -229,11 +229,11 @@ bool cardPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, 
     }
 }
 
-bool cashPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, double thisSum, double thisTaxAmt) {
+bool cashPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, float thisSum, float thisTaxAmt) {
     
-    double cash = 0;
-    double add;
-    double leftover;
+    float cash = 0;
+    float add;
+    float leftover;
 
     printf("  - PRE-TAX TOTAL: %.2f\n", thisSum);
     printf("  - TAX AMT: %.2f", thisTaxAmt);
@@ -273,7 +273,7 @@ bool cashPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, 
 // loading functions to make it look nicer
 void waitReceipt() {
     int numberOfDots;
-    double timeInterval, timeInterval2;
+    double timeInterval;
 
     std::cout << "  ---------------------------------------------------------------------";
     std::cout << "\n  > Thank you for shopping at Costco!";

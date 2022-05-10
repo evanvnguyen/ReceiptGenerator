@@ -13,7 +13,7 @@ class market {
 		std::string phone;
 		std::string fax;
 		std::string email;
-		double tax;
+		float tax;
 	public:
 		// Empty and overloaded constructors
 		market();
@@ -26,7 +26,7 @@ class market {
 		void setPhone(std::string givenPhone);
 		void setFax(std::string givenFax);
 		void setEmail(std::string givenEmail);
-		void setTax(double givenTax);
+		void setTax(float givenTax);
 
 		// Get functions
 		std::string getName() const;

@@ -5,7 +5,7 @@
 #include <iomanip>
 
 // card constructor
-receipt::receipt(market givenStore, std::vector<item> givenCart, card givenCard, tax givenTax, double givenSum, double givenCash) {
+receipt::receipt(market givenStore, std::vector<item> givenCart, card givenCard, tax givenTax, float givenSum, float givenCash) {
 	Store = givenStore;
 	cart = givenCart;
 	myCard = givenCard;
@@ -15,7 +15,7 @@ receipt::receipt(market givenStore, std::vector<item> givenCart, card givenCard,
 }
 
 // cash constructor
-receipt::receipt(market givenStore, std::vector<item> givenCart, tax givenTax, double givenSum, double givenCash) {
+receipt::receipt(market givenStore, std::vector<item> givenCart, tax givenTax, float givenSum, float givenCash) {
 	Store = givenStore;
 	cart = givenCart;
 	Tax = givenTax;
@@ -101,7 +101,7 @@ void receipt::setCard(card givenCard) {
 	myCard = givenCard;
 }
 
-void receipt::setTotal(double givenSum) {
+void receipt::setTotal(float givenSum) {
 	sum = givenSum;
 }
 
@@ -118,6 +118,6 @@ card receipt::getCard() const {
 }
 
 // pre tax total
-double receipt::getTotal() const {
+float receipt::getTotal() const {
 	return sum;
 }

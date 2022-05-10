@@ -17,15 +17,15 @@ class receipt
 		std::vector<item> cart;
 		card myCard;
 		tax Tax;
-		double sum;
-		double cash;
+		float sum;
+		float cash;
 	public:
 
 		// card constructor
-		receipt(market, std::vector<item>, card, tax, double, double);
+		receipt(market, std::vector<item>, card, tax, float, float);
 
 		// cash constructor
-		receipt(market, std::vector<item>, tax, double, double); 
+		receipt(market, std::vector<item>, tax, float, float); 
 
 		void printReceiptCard() const;
 		void printReceiptCash() const;
@@ -33,12 +33,12 @@ class receipt
 		void setStore(market givenStore);
 		void setCart(std::vector<item> givenCart);
 		void setCard(card givenCard);
-		void setTotal(double givenSum);
+		void setTotal(float givenSum);
 
 		market getStore() const;
 		std::vector<item> getCart() const;
 		card getCard() const;
-		double getTotal() const;
+		float getTotal() const;
 };
 
 #endif

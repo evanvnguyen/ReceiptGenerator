@@ -5,37 +5,37 @@ tax::tax() {
 	sum = 0.0;
 }
 
-tax::tax(double givenLocalTax, double givenSum) {
+tax::tax(float givenLocalTax, float givenSum) {
 	localTax = givenLocalTax;
 	sum = givenSum;
 }
 
-void tax::setTax(double givenLocalTax) {
+void tax::setTax(float givenLocalTax) {
 	localTax = givenLocalTax;
 }
 
-void tax::setSum(double givenSum) {
+void tax::setSum(float givenSum) {
 	sum = givenSum;
 }
 
-double tax::getTax() const {
+float tax::getTax() const {
 	return localTax;
 }
 
-double tax::getSum() const {
+float tax::getSum() const {
 	return sum;
 }
 
-double tax::taxAmount() const {
-	double taxAmount = sum * localTax;
+float tax::taxAmount() const {
+	float taxAmount = sum * localTax;
 
 	return taxAmount;
 }
 
 // after tax total
-double tax::calcTotal() const{
+float tax::calcTotal() const{
 	
-	double totalAfter = sum + (sum * localTax);
+	float totalAfter = sum + (sum * localTax);
 
 	return totalAfter;
 }

@@ -40,7 +40,7 @@ void market::setEmail(std::string givenEmail) {
 	email = givenEmail;
 }
 
-void market::setTax(double givenTax) {
+void market::setTax(float givenTax) {
 	tax = givenTax;
 }
 
