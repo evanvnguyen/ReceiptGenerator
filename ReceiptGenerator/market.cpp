@@ -19,7 +19,6 @@ market::market(std::string givenName, std::string givenAddress, int givenStoreNu
 	fax = givenFax;
 	email = givenEmail;
 	tax = givenTax;
-
 }
 
 // Set functions

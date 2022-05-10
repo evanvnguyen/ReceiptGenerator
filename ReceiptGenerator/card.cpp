@@ -37,11 +37,6 @@ std::string card::setCardType(std::string givenCardNum) {
 	char firstChar = givenCardNum[0];
 	short int first = firstChar - '0';
 
-	// console debug
-	//std::cout << "first digit: " << first << std::endl;
-	//std::cout << "length: " << numLength << std::endl;
-
-
 	// visa 
 	if ((numLength == 16) && (first == 4)) {
 		cardType = "VISA";

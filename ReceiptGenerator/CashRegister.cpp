@@ -1,8 +1,9 @@
-#include "item.h"
+﻿#include "item.h"
 #include "card.h"
 #include "market.h"
 #include "receipt.h"
 #include "tax.h"
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>
@@ -10,8 +11,8 @@
 #include <string>
 #include <ctime>
 #include <cmath>
-
-using namespace std;
+#include <stdio.h>
+#include <io.h>
 
 // UI for transaction
 // main called here
@@ -20,7 +21,7 @@ void display(market);
 void waitReceipt(); 
 void waitPayment();
 void waitChange();
-void payment(double, market, vector<item>);
+void payment(double, market, std::vector<item>);
 
 int main()
 {
@@ -28,7 +29,7 @@ int main()
                     "(562)-668-5150", "123 1234 123", "us@costco.com", 0.2);
 
     // instantiate items here
-    vector<int> allSKU = { 7141, 7142, 7143, 7144, 7145 };
+    std::vector<int> allSKU = { 7141, 7142, 7143, 7144, 7145 };
 
     item milk(allSKU[0], "Horizon Milk", 50, 4.99);
     item phone(allSKU[1], "iPhone 13", 50, 799.99);
@@ -36,22 +37,21 @@ int main()
     item webcam(allSKU[3], "Webcam 1080p", 50, 49.99);
     item ps5(allSKU[4], "PlayStation 5 Digital", 50, 399.99);
 
-    map<int, item> items = { { allSKU[0], milk },
+    std::map<int, item> items = { { allSKU[0], milk },
                              { allSKU[1], phone },
                              { allSKU[2], apples },
                              { allSKU[3], webcam },
                              { allSKU[4], ps5 } };
     display(Store);
 
-    vector<item> cart;
+    std::vector<item> cart;
     double sum = 0;
-
 
     int user_input; 
     bool still_buying = true;
     while (still_buying) {
-        cout << "  Please scan the SKU of the item (Press 0 to finish): ";
-        cin >> user_input;
+        std::cout << "  Please scan the SKU of the item (Press 0 to finish): ";
+        std::cin >> user_input;
 
         if (user_input == 0) {
             break;
@@ -64,68 +64,63 @@ int main()
 
             // update the items amount in the inventory
             items.at(user_input).setAmount(items.at(user_input).getAmount() - 1);
-            cout << "  " << items.at(user_input).getName() << " stock: " << items.at(user_input).getAmount() << endl;
+            std::cout << "  " << items.at(user_input).getName() << " stock: " << items.at(user_input).getAmount() << std::endl;
 
 
-            cout << "  " << items.at(user_input).getName() << " scanned!";
-            cout << " ------------------------ " << items.at(user_input).getPrice() << endl;
-            cout << "  TOTAL: " << sum << endl;
-            cout << "  ---------------------------------------------------------------------\n";
+            std::cout << "  " << items.at(user_input).getName() << " scanned!";
+            std::cout << " ------------------------ " << items.at(user_input).getPrice() << std::endl;
+            std::cout << "  TOTAL: " << sum << std::endl;
+            std::cout << "  ---------------------------------------------------------------------\n";
 
         }
         else {
-            cout << "\n  This item doesnt exist!\n";
+            std::cout << "\n  This item doesnt exist!\n";
         } // throw exception if input not an integer
-
     }
-    cout << "  ---------------------------------------------------------------------\n";
-    cout << "  Items in cart: \n";
+    std::cout << "  ---------------------------------------------------------------------\n";
+    std::cout << "  Items in cart: \n";
 
     for (int i = 0; i < cart.size(); i++) {
-        cout <<"  " << cart[i].getSKU() << " " << cart[i].getName() << " " << cart[i].getPrice() << endl;
+        std::cout <<"  " << cart[i].getSKU() << " " << cart[i].getName() << " " << cart[i].getPrice() << std::endl;
     }
 
-    cout << "  TOTAL: " << sum << endl;
-    cout << "  ---------------------------------------------------------------------\n";
+    std::cout << "  TOTAL: " << sum << std::endl;
+    std::cout << "  ---------------------------------------------------------------------\n";
     payment(sum, Store, cart);
-
-    // scan the item here and append it to cart
-    // once all sku's are in the cart, update each sku's inventory
-    // and access the price.
 
     return 0;
 }
 
 void display(market store) {
-    cout << "  <> <> <> <> <> <> <> <> <> Welcome to " << store.getName() << "! <> <> <> <> <> <> <> <> <>" << endl;
-    cout << "      You walk into the store and you see these items on the shelf:  \n";
-    cout << "  *----------------------------------------------------------------------*\n";
-    cout << "  |SKU #7142: iPhone 13 ----------------------------------------- $799.99|\n";
-    cout << "  |SKU #7145: PlayStation 5 (Digital) --------------------------- $399.99|\n";
-    cout << "  |SKU #7144: 1080p Webcam --------------------------------------- $19.99|\n";
-    cout << "  |SKU #7143: Fuji Apples(6ct) ------------------------------------ $1.99|\n";
-    cout << "  |SKU #7141: Horizon Milk 16oz ----------------------------------- $1.49|\n";
-    cout << "  *----------------------------------------------------------------------*\n";
-    cout << "  Excited to purchase some goods, you hastily put some items in your cart.\n";
-    cout << "     You make your way to self-checkout, and start using the register.\n";
-    cout << "    The register detects your movement and the following prompts pop up:\n";
-    cout << "  ---------------------------------------------------------------------\n";
+    std::cout << "  <> <> <> <> <> <> <> <> <> Welcome to " << store.getName() << "! <> <> <> <> <> <> <> <> <>" << std::endl;
+    std::cout << "      You walk into the store and you see these items on the shelf:  \n";
+    std::cout << "  *----------------------------------------------------------------------*\n";
+    std::cout << "  |SKU #7142: iPhone 13 ----------------------------------------- $799.99|\n";
+    std::cout << "  |SKU #7145: PlayStation 5 (Digital) --------------------------- $399.99|\n";
+    std::cout << "  |SKU #7144: 1080p Webcam --------------------------------------- $19.99|\n";
+    std::cout << "  |SKU #7143: Fuji Apples(6ct) ------------------------------------ $1.99|\n";
+    std::cout << "  |SKU #7141: Horizon Milk 16oz ----------------------------------- $1.49|\n";
+    std::cout << "  *----------------------------------------------------------------------*\n";
+    std::cout << "  Excited to purchase some goods, you hastily put some items in your cart.\n";
+    std::cout << "     You make your way to self-checkout, and start using the register.\n";
+    std::cout << "    The register detects your movement and the following prompts pop up:\n";
+    std::cout << "  ---------------------------------------------------------------------\n";
+    //std::wcout << L"你好" << endl;
 }
 
-void payment(double sum, market Store, vector<item> cart) {
+void payment(double sum, market Store, std::vector<item> cart) {
 
     double tempSum = sum;
     // cash denominations
-    vector<double> cash = { 0.01, 0.05, 0.1, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0 };
     
-    cout << "  Select your payment type: \n";
-    cout << "  > CARD\n";
-    cout << "  > CASH\n";
-    cout << "  > ";
+    std::cout << "  Select your payment type: \n";
+    std::cout << "  > CARD\n";
+    std::cout << "  > CASH\n";
+    std::cout << "  > ";
 
-    string user_input;
-    cin >> user_input;
-    cout << "  ---------------------------------------------------------------------\n";
+    std::string user_input;
+    std::cin >> user_input;
+    std::cout << "  ---------------------------------------------------------------------\n";
 
     for (int i = 0; user_input[i]; i++) {
         user_input[i] = tolower(user_input[i]);
@@ -140,20 +135,19 @@ void payment(double sum, market Store, vector<item> cart) {
         double cash = 0.0;
 
         if (user_input == "card") { // selects card
-            cout << "  Please insert or swipe your card: ";
-            cin >> user_input;
-            string thisCard = user_input;
+            std::cout << "  Please insert or swipe your card: ";
+            std::cin >> user_input;
+            std::string thisCard = user_input;
             card myCard(thisCard, 1023, 843);
 
             // card approved
             if (myCard.checkCardNums()) {
                 waitPayment();
 
-                cout << "\n  - APPROVED: ";
+                std::cout << "\n  - APPROVED: ";
                 myCard.toString();
 
-                // This doesn't really do what I want. It only outputs
-                // 2 decimal places versus actually truncating the variable. Fix 
+
                 printf("\n  - PRE-TAX TOTAL: %.2f\n", sum);
                 printf("  - TAX AMT: %.2f", taxAmt);
                 printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum + taxAmt);
@@ -167,29 +161,24 @@ void payment(double sum, market Store, vector<item> cart) {
                 break;
             }
             else {
-                cout << "  This card is not valid.\n";
+                std::cout << "  This card is not valid.\n";
             }
         }
         else if (user_input == "cash") { // selects cash
             double cash = 0;
             double add;
             double leftover;
-            cout << "  This machine only accepts proper denominations:\n";
-            cout << "  COINS: 0.01, 0.05, 0.1, 0.25, 0.5\n";
-            cout << "  CASH: 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0 \n";
 
-            // This doesn't really do what I want. It only outputs
-            // 2 decimal places versus actually truncating the variable. Fix 
             printf("  - PRE-TAX TOTAL: %.2f\n", sum);
             printf("  - TAX AMT: %.2f", taxAmt);
             sum = sum + taxAmt;
             printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum);
-            cout << "  ---------------------------------------------------------------------\n";
+            std::cout << "  ---------------------------------------------------------------------\n";
 
             bool balanceLeft = true;
             while (balanceLeft) {
-                cout << "  > Please enter cash: ";
-                cin >> add;
+                std::cout << "  > Please enter cash: ";
+                std::cin >> add;
                 cash = cash + add;
                 leftover = sum - cash;
                 if (leftover > 0) {
@@ -209,7 +198,6 @@ void payment(double sum, market Store, vector<item> cart) {
             still_select = false;
         }
     }
-    // call receipt
 }
 
 // loading functions to make it look nicer
@@ -217,47 +205,47 @@ void waitReceipt() {
     int numberOfDots;
     double timeInterval, timeInterval2;
 
-    cout << "  ---------------------------------------------------------------------";
-    cout << "\n  > Thank you for shopping at Costco!";
-    cout << "\n  > Generating receipt ";
+    std::cout << "  ---------------------------------------------------------------------";
+    std::cout << "\n  > Thank you for shopping at Costco!";
+    std::cout << "\n  > Generating receipt ";
     for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
     {
-        cout << ".";
+        std::cout << ".";
         for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void waitPayment() {
     int numberOfDots;
     double timeInterval, timeInterval2;
 
-    cout << "  ---------------------------------------------------------------------";
-    cout << "\n  > Contacting bank ";
+    std::cout << "  ---------------------------------------------------------------------";
+    std::cout << "\n  > Contacting bank ";
     for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
     {
-        cout << ".";
+        std::cout << ".";
         for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
     }
-    cout << "\n  > Starting transaction ";
+    std::cout << "\n  > Starting transaction ";
     for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
     {
-        cout << ".";
+        std::cout << ".";
         for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
     }
-    cout << "\n  ---------------------------------------------------------------------";
+    std::cout << "\n  ---------------------------------------------------------------------";
 }
 
 void waitChange() {
     int numberOfDots;
     double timeInterval, timeInterval2;
 
-    cout << "\n  ---------------------------------------------------------------------";
-    cout << "\n  > Dispensing change ";
+    std::cout << "\n  ---------------------------------------------------------------------";
+    std::cout << "\n  > Dispensing change ";
     for (numberOfDots = 0; numberOfDots <= 10; numberOfDots++)
     {
-        cout << ".";
+        std::cout << ".";
         for (timeInterval = 0; timeInterval <= 10000000; timeInterval = timeInterval + 0.1);
     }
-    cout << "\n  > Please collect your change. Thank you for shopping with us!";
+    std::cout << "\n  > Please collect your change. Thank you for shopping with us!";
 }

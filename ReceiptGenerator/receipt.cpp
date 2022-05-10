@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// card constructor
 receipt::receipt(market givenStore, std::vector<item> givenCart, card givenCard, tax givenTax, double givenSum, double givenCash) {
 	Store = givenStore;
 	cart = givenCart;
@@ -14,6 +15,7 @@ receipt::receipt(market givenStore, std::vector<item> givenCart, card givenCard,
 	cash = givenCash;
 }
 
+// cash constructor
 receipt::receipt(market givenStore, std::vector<item> givenCart, tax givenTax, double givenSum, double givenCash) {
 	Store = givenStore;
 	cart = givenCart;
@@ -72,6 +74,10 @@ void receipt::printReceiptCash() const {
 	printf("\n                   CASH PAYMENT: %.2f", cash);
 	printf("\n                         CHANGE: %.2f", abs(Tax.calcTotal() - cash));
 	printf("\n                         TOTAL: $%.2f", Tax.calcTotal());
+}
+
+void receipt::printBarcode() const {
+
 }
 
 void receipt::setStore(market givenStore) {

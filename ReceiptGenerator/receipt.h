@@ -24,6 +24,7 @@ class receipt
 
 		void printReceiptCard() const;
 		void printReceiptCash() const;
+		void printBarcode() const;
 		void setStore(market givenStore);
 		void setCart(std::vector<item> givenCart);
 		void setCard(card givenCard);

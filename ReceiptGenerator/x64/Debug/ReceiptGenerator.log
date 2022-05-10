@@ -1,14 +1,12 @@
 ﻿  cashRegister.cpp
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(28,75): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(33,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(29,75): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(34,50): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(35,57): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(36,53): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(37,60): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(134,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(218,26): warning C4101: 'timeInterval2': unreferenced local variable
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(233,26): warning C4101: 'timeInterval2': unreferenced local variable
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(253,26): warning C4101: 'timeInterval2': unreferenced local variable
-  receipt.cpp
-  Generating Code...
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(35,50): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(36,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(37,53): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(38,60): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(136,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(220,26): warning C4101: 'timeInterval2': unreferenced local variable
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(235,26): warning C4101: 'timeInterval2': unreferenced local variable
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(255,26): warning C4101: 'timeInterval2': unreferenced local variable
   ReceiptGenerator.vcxproj -> C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\x64\Debug\ReceiptGenerator.exe
