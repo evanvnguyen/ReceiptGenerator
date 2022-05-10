@@ -3,8 +3,6 @@
 #include <iostream>
 #include "receipt.h"
 
-using namespace std;
-
 // card constructor
 receipt::receipt(market givenStore, std::vector<item> givenCart, card givenCard, tax givenTax, double givenSum, double givenCash) {
 	Store = givenStore;
@@ -26,58 +24,65 @@ receipt::receipt(market givenStore, std::vector<item> givenCart, tax givenTax, d
 
 void receipt::printReceiptCard() const {
 	// print out store names
-	std::cout << endl;
-	std::cout << "              " << Store.getName() << " #" << Store.getNumber() << endl;
-	std::cout << "            " << Store.getAdd() << endl;
-	std::cout << "         PHONE: " << Store.getPhone() << "\n          FAX : " << Store.getFax() << endl;
-	std::cout << endl;
+	std::cout << std::endl;
+	std::cout << "              " << Store.getName() << " #" << Store.getNumber() << std::endl;
+	std::cout << "            " << Store.getAdd() << std::endl;
+	std::cout << "         PHONE: " << Store.getPhone() << "\n          FAX : " << Store.getFax() << std::endl;
+	std::cout << std::endl;
 
 	// print out item and their prices
 	// ->set width
 	for (int i = 0; i < cart.size(); i++) {
-		std::cout << endl;
+		std::cout << std::endl;
 		std::cout << "    " << cart[i].getSKU() << " " << cart[i].getName() << " ----- " << cart[i].getPrice();
 	}
 
-	std::cout << endl << endl << "          ";
+	std::cout << std::endl << std::endl << "          ";
 	myCard.toString();
 
 	// print out amount info
 	// ->set width
-	std::cout << endl << endl;
+	std::cout << std::endl << std::endl;
 	printf("                         TOTAL: $%.2f", Tax.getSum());
 	std::cout << std::endl << "                SALES TAX: " << Tax.getTax() * 100 << ".0";
 	printf(" $%.2f", Tax.taxAmount());
 	printf("\n                         TOTAL: $%.2f", Tax.calcTotal());
+	printBarcode();
 }
 
 void receipt::printReceiptCash() const {
 	// print out store names
-	std::cout << endl;
-	std::cout << "              " << Store.getName() << " #" << Store.getNumber() << endl;
-	std::cout << "            " << Store.getAdd() << endl;
-	std::cout << "         PHONE: " << Store.getPhone() << "\n          FAX : " << Store.getFax() << endl;
-	std::cout << endl;
+	std::cout << std::endl;
+	std::cout << "              " << Store.getName() << " #" << Store.getNumber() << std::endl;
+	std::cout << "            " << Store.getAdd() << std::endl;
+	std::cout << "         PHONE: " << Store.getPhone() << "\n          FAX : " << Store.getFax() << std::endl;
+	std::cout << std::endl;
 
 	// print out the items and their price
 	// set the width
 	for (int i = 0; i < cart.size(); i++) {
-		std::cout << endl;
-		std::cout << "    " << cart[i].getSKU() << " " << cart[i].getName() << " ----- " << cart[i].getPrice();
+		std::cout << std::endl;
+		std::cout << "       " << cart[i].getSKU() << " " << cart[i].getName() << " ----- " << cart[i].getPrice();
 	}
 	
 	// print out amounts
-	std::cout << endl << endl;
+	std::cout << std::endl << std::endl;
 	printf("                         TOTAL: $%.2f", Tax.getSum());
 	std::cout << std::endl << "                SALES TAX: " << Tax.getTax() * 100 << ".0";
 	printf(" $%.2f", Tax.taxAmount());
 	printf("\n                   CASH PAYMENT: %.2f", cash);
 	printf("\n                         CHANGE: %.2f", abs(Tax.calcTotal() - cash));
 	printf("\n                         TOTAL: $%.2f", Tax.calcTotal());
+	printBarcode();
 }
 
 void receipt::printBarcode() const {
-
+	std::cout << "\n\n    || |  ||| | | | ||| || |||||| | || \n";
+	std::cout << "    || |  ||| | | | ||| || |||||| | || \n";
+	std::cout << "    || |  ||| | | | ||| || |||||| | || \n";
+	std::cout << "    || |  ||| | | | ||| || |||||| | || \n";
+	std::cout << "    || |  ||| | | | ||| || |||||| | || \n";
+	std::cout << "    || |  ||| | | | ||| || |||||| | || \n";
 }
 
 void receipt::setStore(market givenStore) {

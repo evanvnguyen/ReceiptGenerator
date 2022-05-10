@@ -63,5 +63,5 @@ float item::getPrice() const {
 
 //output as string
 void item::toString() const {
-	std::cout << name << " " << SKU << endl;
+	std::cout << name << " " << SKU << std::endl;
 }

@@ -11,9 +11,7 @@
 #include <string>
 #include <ctime>
 #include <cmath>
-#include <stdio.h>
-#include <io.h>
-
+#include <limits>
 // UI for transaction
 // main called here
 
@@ -21,11 +19,16 @@ void display(market);
 void waitReceipt(); 
 void waitPayment();
 void waitChange();
+
 void payment(double, market, std::vector<item>);
+//(myCard, userInput, sum, taxAmt)
+bool cardPayment(market, tax, std::vector<item> cart, double, double);
+//(cash, tax, cart, sum, taxamt)
+bool cashPayment(market, tax, std::vector<item> cart, double, double);
 
 int main()
 {
-    market Store("Costco", "5401 Katella Ave\n\t Cypress, CA 90720", 7801,
+    market Store("Costco", "5401 Katella Ave\n\t   Cypress, CA 90720", 7801,
                     "(562)-668-5150", "123 1234 123", "us@costco.com", 0.2);
 
     // instantiate items here
@@ -52,10 +55,29 @@ int main()
     while (still_buying) {
         std::cout << "  Please scan the SKU of the item (Press 0 to finish): ";
         std::cin >> user_input;
+        
+        // error handle a bad input
+        while (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "  INVALID SCAN! Enter the SKU of the item (Press 0 to finish):  ";
+            std::cin >> user_input;
+
+            if (user_input == 0) {
+                still_buying = false;
+            }
+            else if (!std::cin.fail()) {
+                break;
+            }
+            else if (cart.size() == 0) {
+                std::cout << "No items scanned. Exiting.\n";
+                return 0;
+            }
+        }
 
         if (user_input == 0) {
-            break;
-        }
+            still_buying = false;
+        } // if the sku entered is inside the vector of possible skus
         else if (std::find(allSKU.begin(), allSKU.end(), user_input) != allSKU.end()) {
 
             // get the sum of the item
@@ -70,9 +92,9 @@ int main()
             std::cout << "  TOTAL: " << sum << std::endl;
             std::cout << "  ---------------------------------------------------------------------\n";
         }
-        else {
-            std::cout << "\n  This item doesnt exist!\n";
-        } // throw exception if input not an integer
+        else  {
+            std::cout << "  This item doesnt exist!\n";
+        }
     }
     std::cout << "  ---------------------------------------------------------------------\n";
     std::cout << "  Items in cart: \n";
@@ -83,6 +105,11 @@ int main()
 
     std::cout << "  TOTAL: " << sum << std::endl;
     std::cout << "  ---------------------------------------------------------------------\n";
+    if (cart.size() == 0) {
+        std::cout << "  No items in cart. Exiting.";
+        return 0;
+    }
+    
     payment(sum, Store, cart);
 
     return 0;
@@ -109,12 +136,21 @@ void payment(double sum, market Store, std::vector<item> cart) {
     double tempSum = sum;
     
     std::cout << "  Select your payment type: \n";
-    std::cout << "  > CARD\n";
     std::cout << "  > CASH\n";
+    std::cout << "  > CARD\n";
     std::cout << "  > ";
 
     std::string user_input;
     std::cin >> user_input;
+
+    // error handle a bad input
+    while (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "  INVALID ENTRY! Type CASH or CARD:  ";
+        std::cin >> user_input;;
+    }
+
     std::cout << "  ---------------------------------------------------------------------\n";
 
     for (int i = 0; user_input[i]; i++) {
@@ -130,68 +166,88 @@ void payment(double sum, market Store, std::vector<item> cart) {
         double cash = 0.0;
 
         if (user_input == "card") { // selects card
-            std::cout << "  Please insert or swipe your card: ";
-            std::cin >> user_input;
-            std::string thisCard = user_input;
-            card myCard(thisCard, 1023, 843);
 
-            // card approved
-            if (myCard.checkCardNums()) {
-                waitPayment();
-
-                std::cout << "\n  - APPROVED: ";
-                myCard.toString();
-
-
-                printf("\n  - PRE-TAX TOTAL: %.2f\n", sum);
-                printf("  - TAX AMT: %.2f", taxAmt);
-                printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum + taxAmt);
-
-                waitReceipt();
-                // call receipt here
-                // and done!
-                receipt Receipt(Store, cart, myCard, initTax, sum, cash);
-                Receipt.printReceiptCard();
-
-                break;
-            }
-            else {
-                std::cout << "  This card is not valid.\n";
-            }
+            // cardPayment returns false to break the loop.
+            still_select = cardPayment(Store, initTax, cart, sum, taxAmt);
         }
         else if (user_input == "cash") { // selects cash
-            double cash = 0;
-            double add;
-            double leftover;
 
-            printf("  - PRE-TAX TOTAL: %.2f\n", sum);
-            printf("  - TAX AMT: %.2f", taxAmt);
-            sum = sum + taxAmt;
-            printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", sum);
-            std::cout << "  ---------------------------------------------------------------------\n";
-
-            bool balanceLeft = true;
-            while (balanceLeft) {
-                std::cout << "  > Please enter cash: ";
-                std::cin >> add;
-                cash = cash + add;
-                leftover = sum - cash;
-                if (leftover > 0) {
-                    printf("  - Remaining: %.2f\n", leftover);
-                }
-                else {
-                    printf("  - Your change is: %.2f\n", leftover * -1);
-                    waitReceipt();
-
-                    // call receipt here and done!
-                    receipt Receipt(Store, cart, initTax, sum, cash);
-                    Receipt.printReceiptCash();
-                    waitChange();
-                    break;
-                }
-            }
-            still_select = false;
+            //cashPayment returns false to break the loop
+            still_select = cashPayment(Store, initTax, cart, sum, taxAmt);
         }
+        else {
+            std::cout << "  Error! Did you mean to type \"cash\" or \"card\"? Try again: ";
+            std::cin >> user_input;
+        }
+    }
+}
+
+bool cardPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, double thisSum, double thisTaxAmt) {
+    std::string user_input;
+    
+    std::cout << "  Please insert or swipe your card: ";
+    std::cin >> user_input;
+    card myCard(user_input, 1023, 843);
+
+    double cash = 0.0;
+    
+    if (myCard.checkCardNums()) {
+        waitPayment();
+        myCard.setCardType(user_input);
+        std::cout << "\n  - APPROVED: ";
+        myCard.toString();
+
+
+        printf("\n  - PRE-TAX TOTAL: %.2f\n", thisSum);
+        printf("  - TAX AMT: %.2f", thisTaxAmt);
+        printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", thisSum + thisTaxAmt);
+
+        waitReceipt();
+        // call receipt here
+        // and done!
+        receipt Receipt(thisStore, thisCart, myCard, thisInitTax, thisSum, cash);
+        Receipt.printReceiptCard();
+
+        return false;
+    }
+    else {
+        std::cout << "  This card is not valid.\n";
+    }
+}
+
+bool cashPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, double thisSum, double thisTaxAmt) {
+    
+    double cash = 0;
+    double add;
+    double leftover;
+
+    printf("  - PRE-TAX TOTAL: %.2f\n", thisSum);
+    printf("  - TAX AMT: %.2f", thisTaxAmt);
+    thisSum = thisSum + thisTaxAmt;
+    printf("\n  - YOUR TOTAL AFTER TAX IS: %.2f\n", thisSum);
+    std::cout << "  ---------------------------------------------------------------------\n";
+
+    bool balanceLeft = true;
+    while (balanceLeft) {
+        std::cout << "  > Please enter cash: ";
+        std::cin >> add;
+        cash = cash + add;
+        leftover = thisSum - cash;
+        if (leftover > 0) {
+            printf("  - Remaining: %.2f\n", leftover);
+        }
+        else {
+            printf("  - Your change is: %.2f\n", leftover * -1);
+            waitReceipt();
+
+            // call receipt here and done!
+            receipt Receipt(thisStore, thisCart, thisInitTax, thisSum, cash);
+            Receipt.printReceiptCash();
+            waitChange();
+            return false;
+
+        }
+
     }
 }
 
