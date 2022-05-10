@@ -30,16 +30,16 @@ bool cashPayment(market, tax, std::vector<item> cart, double, double);
 int main()
 {
     market Store("Costco", "5401 Katella Ave\n\t   Cypress, CA 90720", 7801,
-                    "(562)-668-5150", "123 1234 123", "us@costco.com", 0.07);
+                    "(562)-668-5150", "123 1234 123", "us@costco.com", 0.07F);
 
     // instantiate items here
     std::vector<int> allSKU = { 7141, 7142, 7143, 7144, 7145 };
 
-    item milk(allSKU[0], "Horizon Milk", 2, 4.99);
-    item phone(allSKU[1], "iPhone 13", 50, 799.99);
-    item apples(allSKU[2], "Fuji Apples (6ct)", 50, 3.99);
-    item webcam(allSKU[3], "Webcam 1080p", 50, 49.99);
-    item ps5(allSKU[4], "PlayStation 5 Digital", 50, 399.99);
+    item milk(allSKU[0], "Horizon Milk", 2, 4.99F);
+    item phone(allSKU[1], "iPhone 13", 50, 799.99F);
+    item apples(allSKU[2], "Fuji Apples (6ct)", 50, 3.99F);
+    item webcam(allSKU[3], "Webcam 1080p", 50, 49.99F);
+    item ps5(allSKU[4], "PlayStation 5 Digital", 50, 399.99F);
 
     std::map<int, item> items = { { allSKU[0], milk },
                              { allSKU[1], phone },
@@ -170,7 +170,7 @@ void payment(double sum, market Store, std::vector<item> cart) {
         user_input[i] = tolower(user_input[i]);
     }
     // apply sales tax
-    float taxAmt = sum * Store.getTax();
+    double taxAmt = sum * Store.getTax();
     tax initTax(Store.getTax(), sum);
 
     // ask for payment options
@@ -288,7 +288,7 @@ void waitReceipt() {
 
 void waitPayment() {
     int numberOfDots;
-    double timeInterval, timeInterval2;
+    double timeInterval;
 
     std::cout << "  ---------------------------------------------------------------------";
     std::cout << "\n  > Contacting bank ";
@@ -308,7 +308,7 @@ void waitPayment() {
 
 void waitChange() {
     int numberOfDots;
-    double timeInterval, timeInterval2;
+    double timeInterval;
 
     std::cout << "\n  ---------------------------------------------------------------------";
     std::cout << "\n  > Dispensing change ";

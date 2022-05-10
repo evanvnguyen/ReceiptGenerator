@@ -37,7 +37,7 @@ void item::setAmount(int newAmount) {
 }
 
 //sets new price of item
-void item::setPrice(double newPrice) {
+void item::setPrice(float newPrice) {
 	price = newPrice;
 }
 

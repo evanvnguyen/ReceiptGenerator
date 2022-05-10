@@ -1,2 +1,13 @@
-﻿  receipt.cpp
+﻿  card.cpp
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\card.cpp(34,45): warning C4267: 'initializing': conversion from 'size_t' to 'short', possible loss of data
+  cashRegister.cpp
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(276,26): warning C4101: 'timeInterval2': unreferenced local variable
+  item.cpp
+  market.cpp
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\market.cpp(67,9): warning C4244: 'return': conversion from 'const double' to 'float', possible loss of data
+  receipt.cpp
+  tax.cpp
+  Generating Code...
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(271): warning C4715: 'cashPayment': not all control paths return a value
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(230): warning C4715: 'cardPayment': not all control paths return a value
   ReceiptGenerator.vcxproj -> C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\x64\Debug\ReceiptGenerator.exe

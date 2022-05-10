@@ -9,7 +9,7 @@ class item {
 		int SKU;
 		std::string name;
 		int amount;
-		double price;
+		float price;
 
 	public:
 		item();
@@ -18,7 +18,7 @@ class item {
 		void setSKU(int givenSKU);
 		void setName(std::string givenName);
 		void setAmount(int invAmount);
-		void setPrice(double givenPrice);
+		void setPrice(float givenPrice);
 
 		int getSKU() const;
 		std::string getName() const;
