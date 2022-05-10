@@ -6,7 +6,8 @@ class tax {
 	private:
 		double localTax;
 
-		double sum; // pre-tax total
+		// pre-tax total
+		double sum;
 	public:
 		tax();
 		tax(double, double);
@@ -18,6 +19,7 @@ class tax {
 		double getSum() const;
 
 		double taxAmount() const;
+
 		// after tax total
 		double calcTotal() const;
 };

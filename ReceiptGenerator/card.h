@@ -7,7 +7,9 @@
 class card {
 	private:
 		std::string cardNum;
-		std::string cardType; // set to none initially, evaluate in card.cpp. dont pass as parameter
+		// set to none initially, evaluate in card.cpp. 
+		// dont pass as parameter
+		std::string cardType; 
 		int expDate;
 		int CVV;
 
@@ -29,7 +31,8 @@ class card {
 		int getExpDate() const;
 		int getCVV() const;
 
-		void toString() const; // asterisked card number
+		// output
+		void toString() const;
 };
 
 #endif

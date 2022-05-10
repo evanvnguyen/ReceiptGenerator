@@ -7,7 +7,9 @@
 #include "card.h"
 #include "tax.h"
 #include <vector>
-//class that holds the information needed to print out on a receipt and has a custom cout
+
+// class that holds the information needed to print out
+// on a receipt and has a custom cout
 class receipt
 {
 	private:
@@ -19,8 +21,11 @@ class receipt
 		double cash;
 	public:
 
+		// card constructor
 		receipt(market, std::vector<item>, card, tax, double, double);
-		receipt(market, std::vector<item>, tax, double, double); // cash constructor
+
+		// cash constructor
+		receipt(market, std::vector<item>, tax, double, double); 
 
 		void printReceiptCard() const;
 		void printReceiptCash() const;

@@ -13,7 +13,7 @@ card::card() {
 card::card(std::string givenCardNum, int givenExpDate, int givenCVV) {
 	cardNum = givenCardNum;
 	expDate = givenExpDate;
-	cardType = setCardType(givenCardNum); // to be altered by setCardType();
+	cardType = setCardType(givenCardNum); 
 	CVV = givenCVV;
 }
 
@@ -64,7 +64,6 @@ bool card::checkCardNums() {
 
 	// return false if length is < 15 or > 17
 	if (cardNum.length() < 15 || cardNum.length() > 16) {
-		//std::cout << cardNum << " is not a valid number." << std::endl;
 		return false;
 	}
 
@@ -75,19 +74,16 @@ bool card::checkCardNums() {
 		}
 	}
 
-	//std::cout << cardNum << " is a valid number." << std::endl;
 	return true;
 
 }
 
 void card::setExpDate(int givenExpDate) {
 	expDate = givenExpDate;
-
 }
 
 void card::setCVV(int givenCVV) {
 	CVV = givenCVV;
-
 }
 
 std::string card::getCardNum() const {

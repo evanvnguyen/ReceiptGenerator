@@ -1,5 +1,4 @@
 //class that holds all the information of a particular item in inventory
-
 #include "item.h"
 #include <iostream>
 #include <string>
@@ -22,7 +21,6 @@ item::item(int givenSKU, string givenName, int invAmount, float givenPrice) {
 	price = givenPrice;
 }
 
-
 //give the item a new SKU
 void item::setSKU(int newSKU) {
 	SKU = newSKU;
@@ -33,9 +31,7 @@ void item::setName(string newName) {
 	name = newName;
 }
 
-
 //sets new amount of item
-//interact with inventory.cpp
 void item::setAmount(int newAmount) {
 	amount = newAmount;
 }
@@ -65,6 +61,7 @@ float item::getPrice() const {
 	return price;
 }
 
+//output as string
 void item::toString() const {
 	std::cout << name << " " << SKU << endl;
 }

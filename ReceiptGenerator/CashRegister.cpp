@@ -65,13 +65,10 @@ int main()
             // update the items amount in the inventory
             items.at(user_input).setAmount(items.at(user_input).getAmount() - 1);
             std::cout << "  " << items.at(user_input).getName() << " stock: " << items.at(user_input).getAmount() << std::endl;
-
-
             std::cout << "  " << items.at(user_input).getName() << " scanned!";
             std::cout << " ------------------------ " << items.at(user_input).getPrice() << std::endl;
             std::cout << "  TOTAL: " << sum << std::endl;
             std::cout << "  ---------------------------------------------------------------------\n";
-
         }
         else {
             std::cout << "\n  This item doesnt exist!\n";
@@ -105,13 +102,11 @@ void display(market store) {
     std::cout << "     You make your way to self-checkout, and start using the register.\n";
     std::cout << "    The register detects your movement and the following prompts pop up:\n";
     std::cout << "  ---------------------------------------------------------------------\n";
-    //std::wcout << L"你好" << endl;
 }
 
 void payment(double sum, market Store, std::vector<item> cart) {
 
     double tempSum = sum;
-    // cash denominations
     
     std::cout << "  Select your payment type: \n";
     std::cout << "  > CARD\n";

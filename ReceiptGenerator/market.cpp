@@ -2,7 +2,6 @@
 #include <string>
 using namespace std;
 
-
 market::market() {
 	name = "NULL";
 	address = "NULL";
