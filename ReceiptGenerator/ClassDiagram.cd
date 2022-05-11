@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="card">
+    <Position X="5.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAQgICAAAAAAAADAAgCggAAABgICAAAAAAACA=</HashCode>
+      <FileName>card.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="item">
+    <Position X="0.75" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAIEIQABRAAAAAEgABAAAAEEQAAAAA=</HashCode>
+      <FileName>item.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="market">
+    <Position X="10" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAACAAhAAAAAihBAAgAABAAAIECABiAAIEIAAAAAA=</HashCode>
+      <FileName>market.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="receipt">
+    <Position X="0.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AEEABCAAAgBkAAAAQARARAAAAAAAAAAAAIAAAQAgEAQ=</HashCode>
+      <FileName>receipt.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tax">
+    <Position X="5.5" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAABCBAAAAAAAAAAAAABAAAAAAAAAAGAAAAAQAAAAA=</HashCode>
+      <FileName>tax.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
