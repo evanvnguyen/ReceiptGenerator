@@ -6,6 +6,7 @@ C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerat
   receipt.cpp
   tax.cpp
   Generating Code...
-C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(271): warning C4715: 'cashPayment': not all control paths return a value
 C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(230): warning C4715: 'cardPayment': not all control paths return a value
+C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\ReceiptGenerator\cashRegister.cpp(278): warning C4715: 'cashPayment': not all control paths return a value
+  LINK : C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\x64\Debug\ReceiptGenerator.exe not found or not built by the last incremental link; performing full link
   ReceiptGenerator.vcxproj -> C:\Users\nguye\Documents\OneDrive\CLASS\CECS 275\ReceiptGenerator\x64\Debug\ReceiptGenerator.exe

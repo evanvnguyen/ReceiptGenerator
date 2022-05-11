@@ -245,12 +245,19 @@ bool cashPayment(market thisStore, tax thisInitTax, std::vector<item> thisCart, 
     while (balanceLeft) {
         std::cout << "  > Please enter cash: ";
         std::cin >> add;
+
         while (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "  Please deposit a cash value:  ";
             std::cin >> add;
         }
+
+        while (add < 0) {
+            std::cout << "  Please deposit a cash value: ";
+            std::cin >> add;
+        }
+
         cash = cash + add;
         leftover = thisSum - cash;
         if (leftover > 0) {
